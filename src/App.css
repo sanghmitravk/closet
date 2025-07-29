@@ -34,6 +34,7 @@ body, #root {
   background: #181a20;
   padding: 1.2rem 2rem;
   position: relative;
+  justify-content: space-between
 }
 .filter-bar span {
   /* font-weight: 600; */
@@ -78,13 +79,23 @@ body, #root {
   font-size: 1rem;
 }
 .sorting-dropdown {
-  background: #23232b;
+  background: transparent;
   color: #fff;
   padding: 0.4rem 1.2rem;
   font-size: 1rem;
   margin-left: 0.5rem;
+  border-bottom: 1px solid white !important;
   border: none;
+  min-width: 100px;
+  cursor: pointer;
 }
+
+.sorting-dropdown:focus-visible {
+  outline: none;
+}
+
+
+
 .reset-btn {
   margin-left: 2rem;
   background: none;
@@ -101,8 +112,7 @@ body, #root {
 }
 
 .search-bar {
-  width: 100% !important;
-  max-width: 600px;
+  width: 100%;
   padding: 1rem 2.5rem 1rem 1.5rem;
   border-radius: 8px;
   border: none;
@@ -118,20 +128,6 @@ body, #root {
 .search-bar::placeholder {
   color: #888;
   opacity: 1;
-}
-
-.content-section {
-  /* width: 100vw !important;
-  max-width: none !important;
-  margin-left: calc(-1 * (100vw - 100%) / 2);
-  padding-left: 2rem;
-  padding-right: 2rem;
-  box-sizing: border-box;
-  background: #23262f;
-  border: 2px solid #fff;
-  border-radius: 10px;
-  padding-top: 2rem;
-  padding-bottom: 1rem; */
 }
 
 .content-grid {
@@ -155,6 +151,7 @@ body, #root {
   height: 100%;
   border: none;
 }
+
 .content-card img {
   width: 100%;
   height: 260px;
@@ -165,26 +162,27 @@ body, #root {
 .content-info {
   padding: 1.2rem 1rem 1rem 1rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.3rem;
-  justify-content: flex-end;
+  justify-content: space-between;
   height: 100%;
 }
-.content-info div:first-child {
-  font-size: 1.1rem;
+
+.content-info-content {
+  font-size: 1rem;
+}
+
+.content-info-price {
+  font-size: 1.2rem;
   font-weight: 600;
   color: #fff;
   text-align: left;
 }
-.content-info div:nth-child(2) {
-  font-size: 0.95rem;
-  color: #b2bec3;
-  text-align: left;
-}
-.content-info div:last-child {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #fff;
-  margin-top: 0.5rem;
-  text-align: right;
+
+.loader {
+  display: flex;
+  width: 100%;
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
 }

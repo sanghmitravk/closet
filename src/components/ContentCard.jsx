@@ -4,11 +4,11 @@ export default function ContentCard({ item }) {
     <div className={"content-card"}>
       <img src={item?.imagePath} alt={item?.title} height={100} />
       <div className="content-info">
-        <div>
+        <div className="content-info-content">
           <div>{item.creator}</div>
           <div>{item.title}</div>
         </div>
-        <div>
+        <div className="content-info-price">
           {item?.pricingOption === 0
             ? `$${item.price.toFixed(2)}`
             : item?.pricingOption === 1

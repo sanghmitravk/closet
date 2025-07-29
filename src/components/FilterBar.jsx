@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPricing, resetFilters } from '../store/filterSlice';
+import { setPricing, resetFilters, setPriceRange } from '../store/filterSlice';
+// const MAX_PRICE = 999;
 
 const options = [
   { label: 'Paid', value: 0 },
@@ -11,9 +12,8 @@ const options = [
 export default function FilterBar() {
   const dispatch = useDispatch();
   const pricing = useSelector((state) => state.filter.pricing);
-  // For now, slider is UI only; add state management as needed
-  const [price, setPrice] = React.useState([0, 999]);
-  const paidChecked = pricing.includes(0);
+  const priceRange = useSelector((state) => state.filter.priceRange || 0);
+
 
   const handleChange = (optionValue) => {
     let newPricing = pricing.includes(optionValue)
@@ -22,8 +22,14 @@ export default function FilterBar() {
     dispatch(setPricing(newPricing));
   };
 
+  const handlePriceSliderChange = (value) => {
+    dispatch(setPriceRange(value));
+  };
+
+
   return (
     <div className="filter-bar">
+      <div>
       <span>Pricing Option:</span>
       {options.map((option) => (
         <label key={option.value}>
@@ -35,29 +41,20 @@ export default function FilterBar() {
           {option.label}
         </label>
       ))}
+      </div>
       {/* Price slider */}
-      <div className="price-slider-container">
+      {/* <div className="price-slider-container">
         <span className="slider-label">$0</span>
         <input
           type="range"
           min={0}
-          max={999}
-          value={price[0]}
-          disabled={!paidChecked}
-          onChange={e => setPrice([+e.target.value, price[1]])}
+          max={MAX_PRICE}
+          value={priceRange}
+          onChange={(e) => handlePriceSliderChange(e.target.value)}
           className="price-slider"
         />
-        <input
-          type="range"
-          min={0}
-          max={999}
-          value={price[1]}
-          disabled={!paidChecked}
-          onChange={e => setPrice([price[0], +e.target.value])}
-          className="price-slider"
-        />
-        <span className="slider-label">${price[1] === 999 ? '999+' : price[1]}</span>
-      </div>
+        <span className="slider-value">${MAX_PRICE}</span>
+      </div> */}
       <button className="reset-btn" onClick={() => dispatch(resetFilters())}>RESET</button>
     </div>
   );

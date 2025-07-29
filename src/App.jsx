@@ -5,7 +5,6 @@ import FilterBar from './components/FilterBar';
 import SearchBar from './components/SearchBar';
 import ContentGrid from './components/ContentGrid';
 import './App.css';
-import { Sort } from './components/Sort';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -13,12 +12,12 @@ export default function App() {
   useEffect(() => {
     dispatch(fetchContents());
   }, [dispatch]);
+  
 
   return (
     <div className="app-container">
         <SearchBar />
         <FilterBar />
-        <Sort />
         <ContentGrid />
     </div>
   );
